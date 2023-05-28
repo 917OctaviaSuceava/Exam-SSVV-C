@@ -9,7 +9,11 @@ public class Main {
             }
         };
         Feelings feelings = new Feelings(feelingsList);
-        //feelings.beHappy(feelingsList);
+        //FeelingsTest feelingsTest = new FeelingsTest(feelingsList);
+        //feelingsTest.testBeHappy();
+        //feelingsTest.testFindSadFeeling();
+        //feelingsTest.testCheckNeighbours();
+
         System.out.println(feelings.beHappy(feelingsList));
     }
 }
