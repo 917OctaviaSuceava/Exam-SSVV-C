@@ -25,7 +25,6 @@ public class FeelingsTest {
         Feelings feelings = new Feelings(feelingsList);
         int result = feelings.findSadFeeling(0);
 
-        // Assert that the first occurrence of -1 is at index 0
         Assertions.assertEquals(0, result);
     }
 
@@ -35,7 +34,6 @@ public class FeelingsTest {
         Feelings feelings = new Feelings(feelingsList);
         int[] result = feelings.checkNeighbours(5);
 
-        // Assert that the left-side neighbour is 1 and the right-side neighbour is 1
         Assertions.assertArrayEquals(new int[]{1, -1}, result);
     }
 
@@ -52,7 +50,6 @@ public class FeelingsTest {
             }
         };
 
-        // Assert that the resulting array matches the expected array
         Assertions.assertEquals(expected, result);
     }
 }
