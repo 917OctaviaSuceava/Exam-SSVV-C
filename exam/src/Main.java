@@ -9,7 +9,7 @@ public class Main {
             }
         };
         Feelings feelings = new Feelings(feelingsList);
-        feelings.beHappy();
-        System.out.println(feelings);
+        //feelings.beHappy(feelingsList);
+        System.out.println(feelings.beHappy(feelingsList));
     }
 }

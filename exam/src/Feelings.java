@@ -3,13 +3,13 @@ import java.util.ListIterator;
 import java.util.stream.IntStream;
 
 public class Feelings {
-    private ArrayList<Integer> feelingsList;
+    private ArrayList<Integer> feelings;
 
     public Feelings(ArrayList<Integer> f) {
-        feelingsList = f;
+        feelings = f;
     }
 
-    public void beHappy() {
+    public ArrayList<Integer> beHappy(ArrayList<Integer> feelingsList) {
         int i = 0;
         while (i < feelingsList.size()) {
             int pos = findSadFeeling(i);
@@ -31,31 +31,32 @@ public class Feelings {
             }
             else break; // break the loop if there are no more sad feelings in the array
         }
+        return feelingsList;
     }
 
     public void insertHappyFeelings(int i) {
 
-        if (i >= 0 && i < feelingsList.size()) { // insert on both sides
-            feelingsList.add(i, 1);
-            feelingsList.add(i + 2, 1);
+        if (i >= 0 && i < feelings.size()) { // insert on both sides
+            feelings.add(i, 1);
+            feelings.add(i + 2, 1);
         }
     }
 
     public void insertHappyFeelingBefore(int i) {
-        if (i >= 0 && i < feelingsList.size()) { // insert on the left
-            feelingsList.add(i, 1);
+        if (i >= 0 && i < feelings.size()) { // insert on the left
+            feelings.add(i, 1);
         }
     }
 
     public void insertHappyFeelingAfter(int i) {
-        if (i >= 0 && i < feelingsList.size()) { // insert on the right
-            feelingsList.add(i + 1, 1);
+        if (i >= 0 && i < feelings.size()) { // insert on the right
+            feelings.add(i + 1, 1);
         }
     }
 
     public int findSadFeeling(int position) {
-        return IntStream.range(position, feelingsList.size())
-                .filter(i -> feelingsList.get(i) == -1)
+        return IntStream.range(position, feelings.size())
+                .filter(i -> feelings.get(i) == -1)
                 .findFirst()
                 .orElse(-1);
     }
@@ -64,18 +65,18 @@ public class Feelings {
     {
         int[] neighbours = {2,2};
         if(position != 0)
-            neighbours[0] = feelingsList.get(position-1);
-        if(position != feelingsList.size()-1)
-            neighbours[1] = feelingsList.get(position+1);
+            neighbours[0] = feelings.get(position-1);
+        if(position != feelings.size()-1)
+            neighbours[1] = feelings.get(position+1);
         return neighbours;
     }
 
-    public ArrayList<Integer> getFeelingsList() {
-        return feelingsList;
+    public ArrayList<Integer> getFeelings() {
+        return feelings;
     }
 
     @Override
     public String toString() {
-        return "Feelings: " + feelingsList;
+        return "Feelings: " + feelings;
     }
 }
