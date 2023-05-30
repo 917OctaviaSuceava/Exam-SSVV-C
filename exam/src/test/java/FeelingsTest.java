@@ -1,3 +1,6 @@
+package test.java;
+
+import main.java.Feelings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -5,7 +8,7 @@ import java.util.ArrayList;
 public class FeelingsTest {
     private ArrayList<Integer> feelingsList;
 
-    /*public FeelingsTest(ArrayList<Integer> feelingsList) {
+    /*public test.java.FeelingsTest(ArrayList<Integer> feelingsList) {
         this.feelingsList = feelingsList;
     }*/
 
@@ -21,12 +24,59 @@ public class FeelingsTest {
 
     @Test
     public void testFindSadFeeling() {
-
-        Feelings feelings = new Feelings(feelingsList);
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(-1); add(0); add(1);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
         int result = feelings.findSadFeeling(0);
 
         Assertions.assertEquals(0, result);
     }
+
+    @Test
+    public void testFindSadFeeling246Array() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(2); add(4); add(6);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        int result = feelings.findSadFeeling(0);
+
+        Assertions.assertEquals(-1, result);
+    }
+
+    @Test
+    public void testFindSadFeelingPosGreaterThanLength() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(-1); add(0);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        int result = feelings.findSadFeeling(3);
+
+        Assertions.assertEquals(-1, result);
+    }
+
+    @Test
+    public void testFindSadFeelingNegativePos() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(-1); add(0); add(1);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        try {
+            int result = feelings.findSadFeeling(-4);
+            assert(false);
+        } catch (Exception err) {
+            assert(true);
+        }
+    }
+
 
     @Test
     public void testCheckNeighbours() {

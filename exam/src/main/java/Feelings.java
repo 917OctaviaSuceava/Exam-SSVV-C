@@ -1,9 +1,10 @@
+package main.java;
+
 import java.util.ArrayList;
-import java.util.ListIterator;
 import java.util.stream.IntStream;
 
 public class Feelings {
-    private ArrayList<Integer> feelings;
+    private final ArrayList<Integer> feelings;
 
     public Feelings(ArrayList<Integer> f) {
         feelings = f;
@@ -23,7 +24,7 @@ public class Feelings {
                     insertHappyFeelingAfter(pos);
                     i = pos + 2;
                 }
-                else if (neighbours[0] != 1 && neighbours[1] == 1) {
+                else if (neighbours[0] != 1) {
                     insertHappyFeelingBefore(pos);
                     i = pos + 3; // happy neighbour on right side only, insert on left
                 }
@@ -77,6 +78,6 @@ public class Feelings {
 
     @Override
     public String toString() {
-        return "Feelings: " + feelings;
+        return "main.java.Feelings: " + feelings;
     }
 }

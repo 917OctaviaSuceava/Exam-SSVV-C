@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -8,8 +10,9 @@ public class Main {
                 add(1); add(1); add(-1); add(0); add(1); add(1);
             }
         };
+
         Feelings feelings = new Feelings(feelingsList);
-        //FeelingsTest feelingsTest = new FeelingsTest(feelingsList);
+        //test.java.FeelingsTest feelingsTest = new test.java.FeelingsTest(feelingsList);
         //feelingsTest.testBeHappy();
         //feelingsTest.testFindSadFeeling();
         //feelingsTest.testCheckNeighbours();
