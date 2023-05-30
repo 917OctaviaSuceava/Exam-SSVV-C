@@ -128,8 +128,75 @@ public class FeelingsTest {
         Assertions.assertArrayEquals(new int[]{2, 1}, result);
     }
 
+    //integration testing for the beHappy method
+
     @Test
-    public void testBeHappy() {
+    public void testBeHappyWithNoSadFeelingsArray(){
+
+        var arr = new ArrayList<Integer>(){{
+            add(0);add(1);add(0);add(1);
+        }};
+
+        Feelings feelings = new Feelings(arr);
+
+        var result = feelings.beHappy(arr);
+
+        Assertions.assertEquals(arr, result);
+
+    }
+
+    @Test
+    public void testBeHappyWithOneSadFeelingsArray(){
+
+        var arr = new ArrayList<Integer>(){{
+            add(0);add(1);add(1);add(0);add(-1);add(1);
+        }};
+
+        Feelings feelings = new Feelings(arr);
+
+        var result = feelings.beHappy(arr);
+
+        var expected = new ArrayList<Integer>(){{
+            add(0);add(1);add(1);add(0);add(1);add(-1);add(1);
+        }};
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testBeHappyWithSadFeelingsAtEndsArray(){
+
+        var arr = new ArrayList<Integer>(){{
+            add(-1);add(1);add(1);add(0);add(0);add(-1);
+        }};
+
+        Feelings feelings = new Feelings(arr);
+
+        var result = feelings.beHappy(arr);
+
+        var expected = new ArrayList<Integer>(){{
+            add(1);add(-1);add(1);add(1);add(0);add(0);add(1);add(-1);add(1);
+        }};
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testBeHappyWithEmptyArray(){
+
+        var arr = new ArrayList<Integer>();
+
+        Feelings feelings = new Feelings(arr);
+
+        var result = feelings.beHappy(arr);
+
+        var expected = new ArrayList<Integer>();
+
+        Assertions.assertEquals(expected, result);
+    }
+
+
+    @Test
+    public void testBeHappyWithAlternatingSadFeelings() {
 
         Feelings feelings = new Feelings(feelingsList);
         ArrayList<Integer> result = feelings.beHappy(feelingsList);
