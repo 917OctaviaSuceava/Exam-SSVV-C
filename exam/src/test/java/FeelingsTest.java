@@ -1,8 +1,11 @@
 package test.java;
 
 import main.java.Feelings;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class FeelingsTest {
@@ -77,14 +80,52 @@ public class FeelingsTest {
         }
     }
 
+    @Test
+    public void testCheckNeighboursFullCoverage() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(0); add(1); add(-1);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        var result = feelings.checkNeighbours(1);
+        Assertions.assertArrayEquals(new int[]{0, -1}, result);
+    }
 
     @Test
-    public void testCheckNeighbours() {
+    public void testCheckNeighboursArrayWithLength1() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(0);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        var result = feelings.checkNeighbours(0);
+        Assertions.assertArrayEquals(new int[]{2, 2}, result);
+    }
 
-        Feelings feelings = new Feelings(feelingsList);
-        int[] result = feelings.checkNeighbours(5);
+    @Test
+    public void testCheckNeighboursOnlyLeftNeighbour() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(0); add(1);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        var result = feelings.checkNeighbours(1);
+        Assertions.assertArrayEquals(new int[]{0, 2}, result);
+    }
 
-        Assertions.assertArrayEquals(new int[]{1, -1}, result);
+    @Test
+    public void testCheckNeighboursOnlyRightNeighbour() {
+        this.feelingsList = new ArrayList<>() {
+            {
+                add(0); add(1);
+            }
+        };
+        Feelings feelings = new Feelings(this.feelingsList);
+        var result = feelings.checkNeighbours(0);
+        Assertions.assertArrayEquals(new int[]{2, 1}, result);
     }
 
     @Test
